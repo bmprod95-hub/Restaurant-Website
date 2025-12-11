@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Bistro Savoureux | Restaurant français authentique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #8B0000;
+            --secondary-color: #D4AF37;
+            --light-color: #F8F5F0;
+            --dark-color: #2C2C2C;
+            --text-color: #333333;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Crimson Text', serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            color: var(--light-color);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(44, 44, 44, 0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: var(--light-color);
+            font-family: 'Crimson Text', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--light-color);
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #f0f0f0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Sections générales */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-light {
+            background-color: var(--light-color);
+        }
+        
+        .section-dark {
+            background-color: #f9f9f9;
+        }
+        
+        /* À propos */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .about-img:hover img {
+            transform: scale(1.03);
+        }
+        
+        /* Spécialités */
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .specialty-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .specialty-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .specialty-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .specialty-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .specialty-card:hover .specialty-img img {
+            transform: scale(1.1);
+        }
+        
+        .specialty-content {
+            padding: 25px;
+        }
+        
+        .specialty-content h3 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+        }
+        
+        .price {
+            color: var(--secondary-color);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-top: 10px;
+        }
+        
+        /* Carte */
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 25px;
+            margin: 0 10px 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn.active, .tab-btn:hover {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .menu-category {
+            display: none;
+        }
+        
+        .menu-category.active {
+            display: block;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-info h4 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .item-price {
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+        
+        /* Contact */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-detail i {
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .hours p {
+            margin-bottom: 5px;
+        }
+        
+        .map iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-family: 'Crimson Text', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light-color);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .footer-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media screen and (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-img {
+                order: -1;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-color);
+                flex-direction: column;
+                padding: 20px 0;
+                text-align: center;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Le Bistro<span>Savoureux</span></a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="mainMenu">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#specialties">Spécialités</a></li>
+                    <li><a href="#menu">Carte</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#reservation" class="btn btn-secondary">Réserver</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="container hero-content">
+            <h1>Le Bistro Savoureux</h1>
+            <p>Découvrez l'authenticité de la cuisine française dans un cadre chaleureux et élégant. Notre chef étoilé réinvente les classiques avec des produits frais et locaux.</p>
+            <div>
+                <a href="#menu" class="btn">Découvrir notre carte</a>
+                <a href="#reservation" class="btn btn-secondary" style="margin-left: 15px;">Réserver une table</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- À propos -->
+    <section class="section-light" id="about">
+        <div class="container">
+            <h2>Notre Histoire</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Fondé en 1998 par le chef étoilé Pierre Dubois, Le Bistro Savoureux est rapidement devenu une référence de la gastronomie française à Paris. Notre établissement allie tradition et innovation pour offrir une expérience culinaire unique.</p>
+                    <p>Nous sélectionnons avec soin les meilleurs produits de nos régions : viandes françaises, poissons frais de nos côtes, légumes de saison issus de l'agriculture responsable. Chaque plat est une célébration des saveurs authentiques de la France.</p>
+                    <p>Notre cave à vin, riche de plus de 500 références, propose les meilleurs crus français pour accompagner vos repas. Notre sommelier vous conseillera avec passion pour créer la parfaite harmonie entre mets et vins.</p>
+                    <a href="#contact" class="btn">Nous rendre visite</a>
+                </div>
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Intérieur du restaurant">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spécialités -->
+    <section class="section-dark" id="specialties">
+        <div class="container">
+            <h2>Nos Spécialités</h2>
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <div class="specialty-img">
+                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Bœuf Bourguignon">
+                    </div>
+                    <div class="specialty-content">
+                        <h3>Bœuf Bourguignon</h3>
+                        <p>Notre recette traditionnelle mijotée pendant 6 heures avec des carottes, oignons et un vin rouge de Bourgogne.</p>
+                        <div class="price">28€</div>
+                    </div>
+                </div>
+                
+                <div class="specialty-card">
+                    <div class="specialty-img">
+                        <img src="https://images.unsplash.com/photo-1594041680534-e8c8cdebd659?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Confit de canard">
+                    </div>
+                    <div class="specialty-content">
+                        <h3>Confit de Canard</h3>
+                        <p>Cuisse de canard confite lentement dans sa graisse, servie avec des pommes de terre sautées à l'ail.</p>
+                        <div class="price">32€</div>
+                    </div>
+                </div>
+                
+                <div class="specialty-card">
+                    <div class="specialty-img">
+                        <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tarte Tatin">
+                    </div>
+                    <div class="specialty-content">
+                        <h3>Tarte Tatin</h3>
+                        <p>Notre célèbre tarte aux pommes caramélisées, renversée et servie tiède avec une boule de glace vanille.</p>
+                        <div class="price">14€</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carte -->
+    <section class="section-light" id="menu">
+        <div class="container">
+            <h2>Notre Carte</h2>
+            
+            <div class="menu-tabs">
+                <button class="tab-btn active" data-category="entrees">Entrées</button>
+                <button class="tab-btn" data-category="plats">Plats Principaux</button>
+                <button class="tab-btn" data-category="desserts">Desserts</button>
+                <button class="tab-btn" data-category="vins">Vins</button>
+            </div>
+            
+            <div class="menu-category active" id="entrees">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Soupe à l'oignon gratinée</h4>
+                        <p>Oignons caramélisés, bouillon de bœuf, croutons et fromage gruyère gratiné</p>
+                    </div>
+                    <div class="item-price">12€</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Foie gras mi-cuit</h4>
+                        <p>Accompagné de confiture d'oignons et de pain brioché toasté</p>
+                    </div>
+                    <div class="item-price">24€</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Tartare de saumon</h4>
+                        <p>Saumon frais, avocat, citron vert et aneth sur toast de seigle</p>
+                    </div>
+                    <div class="item-price">18€</div>
+                </div>
+            </div>
+            
+            <div class="menu-category" id="plats">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Filet de bœuf Rossini</h4>
+                        <p>Filet de bœuf, foie gras, sauce au porto et pommes dauphines</p>
+                    </div>
+                    <div class="item-price">42€</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Blanquette de veau</h4>
+                        <p>Veau mijoté, carottes, champignons, crème fraîche et riz pilaf</p>
+                    </div>
+                    <div class="item-price">36€</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Bouillabaisse</h4>
+                        <p>Bouillon de poissons méditerranéens, rouille et croutons à l'ail</p>
+                    </div>
+                    <div class="item-price">38€</div>
+                </div>
+            </div>
+            
+            <div class="menu-category" id="desserts">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Crème brûlée à la vanille</h4>
+                        <p>Crème à la vanille de Madagascar et sa croûte caramélisée</p>
+                    </div>
+                    <div class="item-price">10€</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Profiteroles au chocolat</h4>
+                        <p>Choux garnis de glace vanille et nappés de sauce chocolat chaud</p>
+                    </div>
+                    <div class="item-price">12€</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Mille-feuille</h4>
+                        <p>Pâte feuilletée, crème pâtissière à la vanille et glaçage</p>
+                    </div>
+                    <div class="item-price">11€</div>
+                </div>
+            </div>
+            
+            <div class="menu-category" id="vins">
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Château Margaux 2015</h4>
+                        <p>Grand Cru Classé, Margaux, Bordeaux</p>
+                    </div>
+                    <div class="item-price">280€</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Domaine de la Romanée-Conti 2012</h4>
+                        <p>Grand Cru, Bourgogne</p>
+                    </div>
+                    <div class="item-price">850€</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>Château d'Yquem 2009</h4>
+                        <p>Sauternes, Bordeaux</p>
+                    </div>
+                    <div class="item-price">320€</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section-dark" id="contact">
+        <div class="container">
+            <h2>Contact & Réservation</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Informations</h3>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <p><strong>Adresse</strong></p>
+                            <p>12 Rue de la Gastronomie, 75008 Paris</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <p><strong>Téléphone</strong></p>
+                            <p>01 42 96 12 34</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <p><strong>Email</strong></p>
+                            <p>contact@lebistrosavoureux.fr</p>
+                        </div>
+                    </div>
+                    
+                    <div class="hours">
+                        <h3>Horaires d'ouverture</h3>
+                        <p><strong>Lundi - Vendredi:</strong> 12h00 - 14h30, 19h00 - 23h00</p>
+                        <p><strong>Samedi:</strong> 12h00 - 15h00, 19h00 - 00h00</p>
+                        <p><strong>Dimanche:</strong> 12h00 - 16h00</p>
+                    </div>
+                </div>
+                
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9914406082166!2d2.292292615509614!3d48.8583736086617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fe50dc2f75d%3A0x7b56e2abfde9f9e6!2sChamps-%C3%89lys%C3%A9es%2C%20Paris!5e0!3m2!1sfr!2sfr!4v1622635506369!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy"></iframe>
+                    
+                    <div id="reservation" style="margin-top: 30px;">
+                        <h3>Réserver une table</h3>
+                        <p>Pour réserver une table, appelez-nous au 01 42 96 12 34 ou utilisez notre service de réservation en ligne.</p>
+                        <a href="tel:0142961234" class="btn">Appeler pour réserver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Le Bistro<span>Savoureux</span></div>
+                    <p>Restaurant français authentique au cœur de Paris. Depuis 1998, nous proposons une expérience gastronomique exceptionnelle dans un cadre chaleureux.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-title">Liens rapides</h4>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#specialties">Spécialités</a></li>
+                        <li><a href="#menu">Carte</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p>Inscrivez-vous pour recevoir nos actualités et offres spéciales.</p>
+                    <form id="newsletterForm" style="margin-top: 15px;">
+                        <input type="email" placeholder="Votre email" style="padding: 12px; width: 70%; border: none; border-radius: 4px; margin-right: 5px;">
+                        <button type="submit" class="btn" style="padding: 12px 20px;">S'inscrire</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Le Bistro Savoureux. Tous droits réservés.</p>
+                <p>Site créé avec passion pour les amateurs de gastronomie française.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainMenu = document.getElementById('mainMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainMenu.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mainMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Fermer le menu mobile en cliquant sur un lien
+        document.querySelectorAll('#mainMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainMenu.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+        
+        // Tabs pour la carte
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const menuCategories = document.querySelectorAll('.menu-category');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Retirer la classe active de tous les boutons et catégories
+                tabBtns.forEach(b => b.classList.remove('active'));
+                menuCategories.forEach(category => category.classList.remove('active'));
+                
+                // Ajouter la classe active au bouton cliqué
+                btn.classList.add('active');
+                
+                // Afficher la catégorie correspondante
+                const categoryId = btn.getAttribute('data-category');
+                document.getElementById(categoryId).classList.add('active');
+            });
+        });
+        
+        // Smooth scroll pour les ancres
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Formulaire newsletter
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('input[type="email"]');
+            if(emailInput.value) {
+                alert('Merci de vous être abonné à notre newsletter !');
+                emailInput.value = '';
+            }
+        });
+        
+        // Changement de style du header au scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if(window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(44, 44, 44, 0.98)';
+                header.style.padding = '10px 0';
+            } else {
+                header.style.backgroundColor = 'rgba(44, 44, 44, 0.95)';
+                header.style.padding = '15px 0';
+            }
+        });
+    </script>
+</body>
+</html>
